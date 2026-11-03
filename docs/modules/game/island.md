@@ -276,6 +276,8 @@ stateDiagram-v2
 | `GameTooManyClickError`（预防） | 同一按钮高频点击触发保护 | 代码主动规避：`select_product` 前清理 `click_record`、滑动后点安全区域且 `control_check=False`、地图确认按钮只在前 10 秒内补点 |
 | 阶段级失败（返回 False/0） | 拜访超时、角色无可用、材料不足（含岛币不足导致补货失败）、按钮状态未知 | 记录警告后跳过该岗位/地点，不打断整轮任务；`IslandDailyInteract` 失败时延时 60 分钟重试 |
 
+`post_open` 识别到的岗位按钮下沿超出列表可见区域（`POST_LIST_VISIBLE_BOTTOM`=640，滑动框下沿约 656）时，点击会落在列表外或画面外（y>720）而打不开岗位，最终 `GameTooManyClickError`（啾咖啡岗位 1 滑动后常停在 y≈680~720）。现在先 `post_manage_up_swipe` 上推列表（最多 `POST_EDGE_NUDGE_LIMIT` 次）再点击。
+
 错误处理的设计取向是「局部失败不拖垮全局」：单个岗位无角色、单个菜品原料不足、单个好友不可访问都只影响自身，循环继续处理其余岗位；只有 UI 导航层面无法回到已知状态才升级为异常。`GameBugError` 与 `GameStuckError` 的分工来自 `module/exception.py`：前者明确表示客户端 bug（重启可恢复），后者表示操作卡死。
 
 ## 13. 缓存与持久化
