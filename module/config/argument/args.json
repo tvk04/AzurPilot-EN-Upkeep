@@ -15186,6 +15186,19 @@
       "ForceRun": {
         "type": "checkbox",
         "value": false
+      },
+      "FullScan": {
+        "type": "checkbox",
+        "value": false
+      },
+      "RadarScan": {
+        "type": "checkbox",
+        "value": false
+      },
+      "ResumeState": {
+        "type": "stored",
+        "value": null,
+        "display": "hide"
       }
     },
     "OpsiFleet": {
@@ -15267,6 +15280,10 @@
     },
     "OpsiAbyssal": {
       "ForceRun": {
+        "type": "checkbox",
+        "value": false
+      },
+      "ContinueAfterRestart": {
         "type": "checkbox",
         "value": false
       }
