@@ -1,3 +1,7 @@
+/**
+ * @fileoverview 主题用例：简约主题跟随系统明暗并恢复配色、现代主题日志内滚、自定义背景的持久化。
+ */
+
 import { expect, test } from '@playwright/test'
 
 test.beforeEach(async ({page}) => {
@@ -54,11 +58,12 @@ test('简约主题跟随系统明暗并恢复已保存的配色', async ({page})
 
   await theme.click()
   await page.getByRole('option', {name: '现代'}).click()
-  await expect(root).toHaveAttribute('data-theme', 'legacy-dark')
+  await expect(root).toHaveAttribute('data-theme', 'modern-dark')
   await expect(root).not.toHaveAttribute('data-color-mode', /.+/)
   await expect(root).toHaveAttribute('data-material', 'glass')
   await expect(root).not.toHaveCSS('--bg', '#0b0b0b')
-  await expect(page.locator('.sidebar')).toHaveCSS('backdrop-filter', /blur\(/)
+  const reducedBackdrop = await root.getAttribute('data-reduce-backdrop')
+  await expect(page.locator('.sidebar')).toHaveCSS('backdrop-filter', reducedBackdrop === null ? /blur\(/ : 'none')
 })
 
 test('现代主题浅色与深色的日志在面板内部滚动', async ({page}) => {
@@ -66,7 +71,7 @@ test('现代主题浅色与深色的日志在面板内部滚动', async ({page})
   await page.setViewportSize({width: 1440, height: 900})
   await page.goto('/#/i/testpilot/overview')
 
-  for (const theme of ['legacy-light', 'legacy-dark']) {
+  for (const theme of ['modern-light', 'modern-dark']) {
     await page.evaluate(value => localStorage.setItem('azurpilot.theme', value), theme)
     await page.reload()
     await expect(page.locator('html')).toHaveAttribute('data-theme', theme)

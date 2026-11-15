@@ -34,9 +34,8 @@ function createMockContext(): AppContextValue {
     notify: () => {},
     previewEnabled: false,
     setPreviewEnabled: () => {},
-    devMode: false,
-    setDevMode: () => {},
-    theme: 'legacy-light',
+
+    theme: 'modern-light',
     setTheme: () => {},
     material: 'glass',
     setMaterial: () => {},

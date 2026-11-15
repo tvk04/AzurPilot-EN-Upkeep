@@ -8,26 +8,13 @@
 import type { UiKey } from '../i18n'
 import type { ResolvedMode } from './palettes'
 
-export type ColorGroup = 'surface' | 'text' | 'accent' | 'status' | 'nav' | 'form' | 'log' | 'syntax' | 'chart'
+type ColorGroup = 'surface' | 'text' | 'accent' | 'status' | 'nav' | 'form' | 'log' | 'syntax' | 'chart'
 
-export const colorGroups: ColorGroup[] = ['surface', 'text', 'accent', 'status', 'nav', 'form', 'log', 'syntax', 'chart']
-
-export const colorGroupLabels: Record<ColorGroup, UiKey> = {
-  surface: 'settings.colorGroupSurface',
-  text: 'settings.colorGroupText',
-  accent: 'settings.colorGroupAccent',
-  status: 'settings.colorGroupStatus',
-  nav: 'settings.colorGroupNav',
-  form: 'settings.colorGroupForm',
-  log: 'settings.colorGroupLog',
-  syntax: 'settings.colorGroupSyntax',
-  chart: 'settings.colorGroupChart',
-}
-
+/** 一个可编辑颜色槽位：token 是主题已在消费的 CSS 变量名，label 是设置页的展示文案键。 */
 export type ColorSlot = {token: `--${string}`; group: ColorGroup; label: UiKey}
 
 /** 挂牌顺序即界面顺序：先面、再字、再强调，其余按使用频率排开。 */
-export const colorSlots: ColorSlot[] = [
+export const colorSlots: readonly ColorSlot[] = [
   {token: '--bg', group: 'surface', label: 'settings.colorSlotBg'},
   {token: '--surface', group: 'surface', label: 'settings.colorSlotSurface'},
   {token: '--surface-muted', group: 'surface', label: 'settings.colorSlotSurfaceMuted'},
@@ -88,12 +75,19 @@ export const colorSlots: ColorSlot[] = [
 ]
 
 const slotTokens = new Set<string>(colorSlots.map(slot => slot.token))
+
+/** 是否为登记过的槽位令牌：未登记的令牌不进覆盖表，也不会写进根节点。 */
 export const isColorToken = (token: string) => slotTokens.has(token)
 
 /** 只接受实色：`#rgb` 输入时补齐成六位，其余（rgb()/color-mix/named）一律判为无效。 */
 export const colorHex = /^#[\da-f]{6}$/i
 
-/** 计算样式可能给 `rgb(…)`，统一折成六位十六进制；认不出就返回 undefined。 */
+/**
+ * 把浏览器计算色值折算成六位十六进制。
+ *
+ * @param raw 浏览器返回的 CSS 颜色值。
+ * @returns 认可的十六进制颜色，无法解析时返回 undefined。
+ */
 export function toHexColor(raw: string): string | undefined {
   const value = raw.trim()
   if (colorHex.test(value)) return value.toLowerCase()
@@ -107,7 +101,7 @@ export function toHexColor(raw: string): string | undefined {
 const STORAGE_KEY = 'azurpilot.color-palette'
 
 /** 每个明暗各存一份覆盖；缺省即「跟随主题」。 */
-export type ColorOverrides = Partial<Record<ResolvedMode, Record<string, string>>>
+type ColorOverrides = Partial<Record<ResolvedMode, Record<string, string>>>
 
 /** 只接收登记过的令牌与合法实色，避免本地数据把任意 CSS 写进根节点。 */
 export function readColorOverrides(): ColorOverrides {
@@ -135,11 +129,25 @@ function save(overrides: ColorOverrides) {
   } catch { /* 存储不可用时仍允许本次会话内改色。 */ }
 }
 
+/**
+ * 读单个槽位在指定明暗下的覆盖值。
+ *
+ * @param mode 明暗模式。
+ * @param token CSS 变量名。
+ * @returns 覆盖值，未覆盖时返回 undefined。
+ */
 export function readColorOverride(mode: ResolvedMode, token: string): string | undefined {
   return readColorOverrides()[mode]?.[token]
 }
 
-/** 写入或清除单个槽位；value 传 undefined 表示还原。返回写入后的覆盖表。 */
+/**
+ * 写入或清除单个槽位。
+ *
+ * @param mode 明暗模式。
+ * @param token CSS 变量名。
+ * @param value 覆盖值；传 null 表示还原。
+ * @returns 写入后的覆盖表。
+ */
 export function writeColorOverride(mode: ResolvedMode, token: string, value: string | null): ColorOverrides {
   const overrides = readColorOverrides()
   if (!isColorToken(token)) return overrides
@@ -153,6 +161,12 @@ export function writeColorOverride(mode: ResolvedMode, token: string, value: str
   return next
 }
 
+/**
+ * 清空覆盖并返回清空后的覆盖表。
+ *
+ * @param mode 明暗模式；不传时清掉全部明暗。
+ * @returns 清理后的覆盖表。
+ */
 export function clearColorOverrides(mode?: ResolvedMode): ColorOverrides {
   const overrides = readColorOverrides()
   const next: ColorOverrides = {...overrides}
@@ -162,11 +176,23 @@ export function clearColorOverrides(mode?: ResolvedMode): ColorOverrides {
   return next
 }
 
+/**
+ * 统计指定明暗下已覆盖的槽位数。
+ *
+ * @param mode 明暗模式。
+ * @returns 覆盖槽位数量。
+ */
 export function countColorOverrides(mode: ResolvedMode): number {
   return Object.keys(readColorOverrides()[mode] ?? {}).length
 }
 
-/** 把该明暗的覆盖写进根节点，返回写过的令牌名供调用方记账清理。 */
+/**
+ * 把该明暗的覆盖写进根节点。
+ *
+ * @param root 应用主题的根元素。
+ * @param mode 明暗模式。
+ * @returns 实际写过的 CSS 变量名。
+ */
 export function applyColorOverrides(root: HTMLElement, mode: ResolvedMode): string[] {
   const entries = readColorOverrides()[mode] ?? {}
   const written: string[] = []
@@ -176,21 +202,4 @@ export function applyColorOverrides(root: HTMLElement, mode: ResolvedMode): stri
     written.push(token)
   }
   return written
-}
-
-/** 未覆盖时读主题自己的取值：色块与十六进制输入都以它起稿。
-    令牌可能是 `color-mix()` 这类表达式，交给浏览器解析一次再取 RGB。 */
-export function currentColorValue(token: string): string | undefined {
-  if (typeof document === 'undefined') return undefined
-  const declared = getComputedStyle(document.documentElement).getPropertyValue(token)
-  const direct = toHexColor(declared)
-  if (direct) return direct
-  if (!declared.trim() || typeof document.body === 'undefined') return undefined
-  const probe = document.createElement('span')
-  probe.style.cssText = 'position:absolute;visibility:hidden;pointer-events:none'
-  probe.style.backgroundColor = declared
-  document.body.appendChild(probe)
-  const resolved = toHexColor(getComputedStyle(probe).backgroundColor)
-  probe.remove()
-  return resolved
 }

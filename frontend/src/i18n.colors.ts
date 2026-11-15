@@ -1,4 +1,6 @@
-/** 调色板文案：槽位名与分组名。颜色令牌本身在 app/colorPalette.ts。 */
+/**
+ * @fileoverview 调色板文案：槽位名与分组名。颜色令牌本身在 app/colorPalette.ts。
+ */
 export const colorZhCN = {
   'settings.colorPalette': '调色板',
   'settings.colorPaletteHelp': '逐项调整界面里的每一个颜色，改动立即生效，明暗两套分别保存。',
@@ -70,8 +72,9 @@ export const colorZhCN = {
   'settings.colorSlotChartFall': '下跌',
 } as const
 
-export type ColorKeys = keyof typeof colorZhCN
+type ColorKeys = keyof typeof colorZhCN
 
+/** 英文文案，键集与中文版一致。 */
 export const colorEnUS: Record<ColorKeys, string> = {
   'settings.colorPalette': 'Color palette',
   'settings.colorPaletteHelp': 'Adjust every color in the interface one by one. Changes apply instantly and are stored per light/dark mode.',
@@ -143,6 +146,7 @@ export const colorEnUS: Record<ColorKeys, string> = {
   'settings.colorSlotChartFall': 'Fall',
 }
 
+/** 日文文案，键集与中文版一致。 */
 export const colorJaJP: Record<ColorKeys, string> = {
   'settings.colorPalette': 'カラーパレット',
   'settings.colorPaletteHelp': 'インターフェースの色をひとつずつ調整できます。変更はすぐ反映され、ライト／ダーク別に保存されます。',
@@ -214,6 +218,7 @@ export const colorJaJP: Record<ColorKeys, string> = {
   'settings.colorSlotChartFall': '下落',
 }
 
+/** 繁体中文文案，键集与中文版一致。 */
 export const colorZhTW: Record<ColorKeys, string> = {
   'settings.colorPalette': '調色盤',
   'settings.colorPaletteHelp': '逐項調整介面裡的每一個顏色，改動立即生效，明暗兩套分別儲存。',

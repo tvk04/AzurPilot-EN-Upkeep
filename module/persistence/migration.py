@@ -140,6 +140,7 @@ def assert_no_workers(root):
         if process.pid in startup_ids:
             continue
         command = process.info.get('cmdline') or []
+        # tui.py 已并入 gui.py --tui，仍保留用于识别升级前遗留的旧进程。
         if not any(Path(part).name.lower() in ('alas.py', 'gui.py', 'tui.py', 'mcp_server_sse.py') for part in command):
             continue
         try:
@@ -655,7 +656,7 @@ def migrate(database):
                 connection.row_factory = sqlite3.Row
                 connection.execute('PRAGMA foreign_keys=ON')
                 connection.execute('PRAGMA journal_mode=WAL')
-                connection.execute('PRAGMA synchronous=FULL')
+                connection.execute('PRAGMA synchronous=NORMAL')
                 create_schema(connection)
                 connection.execute('BEGIN IMMEDIATE')
                 ordered = sorted(sources.items(), key=lambda pair: (pair[1] not in ('statistics', 'cl1', 'storage', 'daily', 'scheduler'), str(pair[0])))
@@ -716,6 +717,9 @@ def migrate(database):
                 phase('保存 %s 条未迁移记录的清单', len(decoder.unmigrated))
                 (backup / 'unmigrated.json').write_text(json.dumps(decoder.unmigrated, ensure_ascii=False, indent=2), encoding='utf-8')
             phase('切换正式总库：%s', database.path)
+            # 长连接会持有文件句柄，Windows 上必须先释放才能替换库文件。
+            from module.persistence.database import close_all
+            close_all(database.directory)
             os.replace(temporary, database.path)
             phase('保存迁移完成标记')
             database._write_marker(digest)
