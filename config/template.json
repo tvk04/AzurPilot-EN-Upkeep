@@ -3519,6 +3519,7 @@
       "MineSilver": 1,
       "DefaultOre": "Silver",
       "WorkerFilter": "WorkerJuu",
+      "MinCoal": 0,
       "MinCopper": 50,
       "MinAluminium": 50,
       "MinIron": 50,

@@ -18902,12 +18902,17 @@
           "Aluminium",
           "Iron",
           "Sulphur",
-          "Silver"
+          "Silver",
+          "Coal"
         ]
       },
       "WorkerFilter": {
         "type": "textarea",
         "value": "WorkerJuu"
+      },
+      "MinCoal": {
+        "type": "input",
+        "value": 0
       },
       "MinCopper": {
         "type": "input",

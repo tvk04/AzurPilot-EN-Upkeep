@@ -108,6 +108,7 @@ THRESHOLD_GROUPS = {
         2703: 'IslandMineForest.IslandMine.MinIron',
         2704: 'IslandMineForest.IslandMine.MinSulphur',
         2705: 'IslandMineForest.IslandMine.MinSilver',
+        2700: 'IslandMineForest.IslandMine.MinCoal',
     },
     'wood': {
         2801: 'IslandMineForest.IslandForest.MinPractical',
@@ -136,7 +137,7 @@ THRESHOLD_GROUPS = {
 
 # 矿山/林场/渔场的 AzurPilot 产品名 -> 物品 ID，与 DefaultOre/DefaultWood/DefaultFish、UnlockedFish 的选项一致
 PRODUCT_ITEM_IDS = {
-    'mine': {'Copper': 2701, 'Aluminium': 2702, 'Iron': 2703, 'Sulphur': 2704, 'Silver': 2705},
+    'mine': {'Copper': 2701, 'Aluminium': 2702, 'Iron': 2703, 'Sulphur': 2704, 'Silver': 2705, 'Coal': 2700},
     'wood': {'Practical': 2801, 'Selected': 2802, 'Elegant': 2803},
     'fishery': {
         'shell': 5001, 'catfish': 5002, 'koi_carp': 5003, 'common_carp': 5004, 'shrimp': 5005,

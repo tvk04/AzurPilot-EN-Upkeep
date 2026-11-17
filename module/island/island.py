@@ -182,7 +182,7 @@ ISLAND_ITEM_CN_NAMES = {
     'catfish': '鲶鱼', 'common_carp': '鲫鱼', 'tuna': '金枪鱼', 'salmon': '三文鱼', 'red_sea_bream': '红鲷鱼', 'black_porgy': '黑鲷鱼',
     # 矿山/林场
     'Copper': '铜矿', 'Aluminium': '铝矿', 'Iron': '铁矿', 'Sulphur': '硫磺',
-    'Silver': '银矿', 'Elegant': '典雅之木', 'Practical': '实用之木', 'Selected': '精选之木',
+    'Silver': '银矿', 'Coal': '煤炭', 'Elegant': '典雅之木', 'Practical': '实用之木', 'Selected': '精选之木',
     # 牧场/磨坊
     'chicken_feed': '鸡饲料', 'pig_feed': '猪饲料', 'cattle_feed': '牛饲料',
     'sheep_feed': '羊饲料', 'wheat_flour': '面粉', 'chicken': '鸡肉', 'pork': '猪肉',

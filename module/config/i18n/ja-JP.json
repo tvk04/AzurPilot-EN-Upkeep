@@ -4877,11 +4877,16 @@
       "Aluminium": "アルミ鉱石",
       "Iron": "鉄鉱石",
       "Sulphur": "硫黄鉱石",
-      "Silver": "銀鉱石"
+      "Silver": "銀鉱石",
+      "Coal": "石炭"
     },
     "WorkerFilter": {
       "name": "鉱山作業員フィルター",
       "help": ">で接続。例：ChaoHo > NewJersey > Amagi_chan\nSaratoga > Akashi > Tashkent > YingSwei\nLeMalin > Unicorn > Shimakaze > Cheshire\nChenHai > WilliamDPorter\nHelena > Friedrich > Atago\nYixian > August > Eugen > Hood > Javelin > Laffey > Explorer > Navigator > OceanCrosser > FeiYun > Takao > Anchorage > Belfast > ChangFeng > Mogador > RoyalFortune > DaVinci > Taihou > Nagato > Agir > HwahJah > Argus > Ognevoy\nデフォルト順の先頭2行のみ認識します。指定キャラクターが使用できない場合は WorkerJuu にフォールバックします。"
+    },
+    "MinCoal": {
+      "name": "石炭最低在庫",
+      "help": "倉庫の石炭がこの値を下回った場合のみ鉱山ポジションが生産します（1回あたり8個）。"
     },
     "MinCopper": {
       "name": "銅鉱石最低在庫",

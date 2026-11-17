@@ -1955,9 +1955,11 @@ IslandMine:
     option: [ 0, 1, 2, 3, 4 ]
   DefaultOre:
     value: Silver
-    option: [ Copper, Aluminium, Iron, Sulphur, Silver ]
+    option: [ Copper, Aluminium, Iron, Sulphur, Silver, Coal ]
   WorkerFilter: |-
     WorkerJuu
+  MinCoal:
+    value: 0
   MinCopper:
     value: 50
   MinAluminium:
