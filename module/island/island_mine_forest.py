@@ -36,8 +36,6 @@ class IslandMineForest(Island,LoginHandler):
                     {'name': 'Iron', 'template': TEMPLATE_IRON, 'selection': SELECT_IRON, 'selection_check': SELECT_IRON_CHECK},
                     {'name': 'Sulphur', 'template': TEMPLATE_SULPHUR, 'selection': SELECT_SULPHUR, 'selection_check': SELECT_SULPHUR_CHECK},
                     {'name': 'Silver', 'template': TEMPLATE_SILVER, 'selection': SELECT_SILVER, 'selection_check': SELECT_SILVER_CHECK},
-                    # 煤炭仓库按文字识别，不需要仓库模板
-                    {'name': 'Coal', 'template': None, 'selection': SELECT_COAL, 'selection_check': SELECT_COAL_CHECK},
                 ]
             },
             'forest': {
@@ -57,8 +55,6 @@ class IslandMineForest(Island,LoginHandler):
         "Iron": (SELECT_IRON, SELECT_IRON_CHECK, POST_IRON),
         "Sulphur": (SELECT_SULPHUR, SELECT_SULPHUR_CHECK, POST_SULPHUR),
         "Silver": (SELECT_SILVER, SELECT_SILVER_CHECK, POST_SILVER),
-        # 煤炭暂无岗位「生产中」图：生产中的煤炭岗位记为未知产物，不计入生产中数量
-        "Coal": (SELECT_COAL, SELECT_COAL_CHECK, None),
         "Elegant": (SELECT_ELEGANT, SELECT_ELEGANT_CHECK, POST_ELEGANT),
         "Practical": (SELECT_PRACTICAL, SELECT_PRACTICAL_CHECK, POST_PRACTICAL),
         "Selected": (SELECT_SELECTED, SELECT_SELECTED_CHECK, POST_SELECTED),
@@ -66,13 +62,11 @@ class IslandMineForest(Island,LoginHandler):
 
     # 每岗产 4 个
     UNITS_PER_RUN = 4
-    # 每次产量不是 4 个的产物（煤炭每次 8 个，见游戏数据 401001）
-    PRODUCT_UNITS = {'Coal': 8}
     # 各产物的最大生产次数（实用之木9次，铜矿12次，铁矿8次，其他5次）
     PRODUCT_MAX_RUNS = {
         # 矿山
         'Copper': 12, 'Aluminium': 5, 'Iron': 8,
-        'Sulphur': 5, 'Silver': 5, 'Coal': 12,
+        'Sulphur': 5, 'Silver': 5,
         # 林场
         'Elegant': 5, 'Practical': 9, 'Selected': 5,
     }
@@ -90,17 +84,13 @@ class IslandMineForest(Island,LoginHandler):
 
     def _get_threshold(self, product_name):
         """获取指定产品的最低库存阈值"""
-        mine_products = ['Copper', 'Aluminium', 'Iron', 'Sulphur', 'Silver', 'Coal']
+        mine_products = ['Copper', 'Aluminium', 'Iron', 'Sulphur', 'Silver']
         forest_products = ['Elegant', 'Practical', 'Selected']
         if product_name in mine_products:
             return getattr(self.config, f'IslandMine_Min{product_name}', 0)
         elif product_name in forest_products:
             return getattr(self.config, f'IslandForest_Min{product_name}', 0)
         return 0
-
-    def _units_per_run(self, product_name):
-        """产物每次生产的数量。"""
-        return self.PRODUCT_UNITS.get(product_name, self.UNITS_PER_RUN)
 
     @staticmethod
     def _post_available_for_dispatch(post_info):
@@ -117,7 +107,6 @@ class IslandMineForest(Island,LoginHandler):
         'Iron': ['铁矿', 'Iron'],
         'Sulphur': ['硫磺', '硫矿', 'Sulfur'],
         'Silver': ['银矿', 'Silver'],
-        'Coal': ['煤炭', 'Coal'],
         'Practical': ['实用之木', '实用之本', 'Workable'],
         'Selected': ['精选之木', '精选之本', 'Premium'],
         'Elegant': ['典雅之木', '典雅之本', 'Elegant'],
@@ -209,7 +198,7 @@ class IslandMineForest(Island,LoginHandler):
                 for pid in post_ids:
                     if self.posts.get(pid, {}).get('crop') == name:
                         runs = self.posts.get(pid, {}).get('runs', 0)
-                        in_production += runs * self._units_per_run(name)
+                        in_production += runs * self.UNITS_PER_RUN
 
                 effective_count = warehouse_count + in_production
                 threshold = self._get_threshold(name)
@@ -367,12 +356,11 @@ class IslandMineForest(Island,LoginHandler):
 
         # 计算需要生产多少单位
         max_runs = self.PRODUCT_MAX_RUNS.get(product, 5)
-        units_per_run = self._units_per_run(product)
-        max_units = max_runs * units_per_run
+        max_units = max_runs * self.UNITS_PER_RUN
         if need_count and need_count > 0:
-            # 每岗最少 1 次，不超过该产物最大次数
-            runs = max(1, min(max_runs, -(-need_count // units_per_run)))  # ceil 除法
-            target_units = runs * units_per_run
+            # 每岗最少 1 次（4 单位），不超过该产物最大次数
+            runs = max(1, min(max_runs, -(-need_count // self.UNITS_PER_RUN)))  # ceil 除法
+            target_units = runs * self.UNITS_PER_RUN
         else:
             runs = max_runs
             target_units = max_units  # 默认满产
@@ -556,14 +544,14 @@ class IslandMineForest(Island,LoginHandler):
             cat_needs = needs.get(category, [])
             idle_count = len(idle_posts[category])
 
-            # 计算每个缺口产物需要的岗位数（每岗最多 max_runs * 每次产量 单位）
+            # 计算每个缺口产物需要的岗位数（每岗最多 max_runs * UNITS_PER_RUN 单位）
             remaining_need = {
                 name: self.needs_count.get((category, name), 0)
                 for name in cat_needs
             }
             posts_needed = {}
             for name in cat_needs:
-                max_units_per_post = self.PRODUCT_MAX_RUNS.get(name, 5) * self._units_per_run(name)
+                max_units_per_post = self.PRODUCT_MAX_RUNS.get(name, 5) * self.UNITS_PER_RUN
                 posts_needed[name] = max(1, -(-remaining_need[name] // max_units_per_post))
             assigned = {name: 0 for name in cat_needs}
 
@@ -574,7 +562,7 @@ class IslandMineForest(Island,LoginHandler):
                     any(assigned[n] < posts_needed[n] for n in cat_needs):
                 name = cat_needs[idx % len(cat_needs)]
                 if assigned[name] < posts_needed[name]:
-                    max_units_per_post = self.PRODUCT_MAX_RUNS.get(name, 5) * self._units_per_run(name)
+                    max_units_per_post = self.PRODUCT_MAX_RUNS.get(name, 5) * self.UNITS_PER_RUN
                     post_need = min(remaining_need[name], max_units_per_post)
                     remaining_need[name] -= post_need
                     assigned[name] += 1
@@ -588,7 +576,7 @@ class IslandMineForest(Island,LoginHandler):
             if category == 'mine':
                 default_count = min(self.config.IslandMine_MineSilver, remaining)
                 default_product = self.config.IslandMine_DefaultOre
-                if default_product not in ('Copper', 'Aluminium', 'Iron', 'Sulphur', 'Silver', 'Coal'):
+                if default_product not in ('Copper', 'Aluminium', 'Iron', 'Sulphur', 'Silver'):
                     default_product = 'Silver'
             else:
                 default_count = min(self.config.IslandForest_CutElegant, remaining)

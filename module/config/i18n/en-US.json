@@ -4877,16 +4877,11 @@
       "Aluminium": "Bauxite Ore",
       "Iron": "Iron Ore",
       "Sulphur": "Sulfur",
-      "Silver": "Silver Ore",
-      "Coal": "Coal"
+      "Silver": "Silver Ore"
     },
     "WorkerFilter": {
       "name": "Mine worker filter",
       "help": "Connect with >, e.g. ChaoHo > NewJersey > Amagi_chan\nSaratoga > Akashi > Tashkent > YingSwei\nLeMalin > Unicorn > Shimakaze > Cheshire\nChenHai > WilliamDPorter\nHelena > Friedrich > Atago\nYixian > August > Eugen > Hood > Javelin > Laffey > Explorer > Navigator > OceanCrosser > FeiYun > Takao > Anchorage > Belfast > ChangFeng > Mogador > RoyalFortune > DaVinci > Taihou > Nagato > Agir > HwahJah > Argus > Ognevoy\nOnly recognizes the first two rows in default order. If the specified character is unavailable, falls back to WorkerJuu."
-    },
-    "MinCoal": {
-      "name": "Coal min stock",
-      "help": "Mine positions only produce when coal in warehouse falls below this value. Coal yields 8 per run."
     },
     "MinCopper": {
       "name": "Copper Ore min stock",

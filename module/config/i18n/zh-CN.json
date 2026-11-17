@@ -4877,16 +4877,11 @@
       "Aluminium": "铝矿",
       "Iron": "铁矿",
       "Sulphur": "硫矿",
-      "Silver": "银矿",
-      "Coal": "煤炭"
+      "Silver": "银矿"
     },
     "WorkerFilter": {
       "name": "矿山使用角色",
       "help": "以>连接，例如肇和 新泽西 小天城：ChaoHo > NewJersey > Amagi_chan\n小加加：Saratoga > 明石：Akashi > 塔什干：Tashkent > 应瑞：YingSwei\n恶毒：LeMalin > 独角兽：Unicorn > 岛风：Shimakaze > 柴郡：Cheshire\n镇海：ChenHai > 威廉D波特：WilliamDPorter\n海伦娜：Helena > 大帝：Friedrich > 愛宕：Atago\n逸仙：Yixian > 奥古斯特：August > 欧根亲王：Eugen > 胡德：Hood > 标枪：Javelin > 拉菲：Laffey > 探索者：Explorer > 领航员：Navigator > 领洋者：OceanCrosser > 飞云：FeiYun > 高雄：Takao > 安克雷奇：Anchorage > 贝尔法斯特：Belfast > 长风：ChangFeng > 莫加多尔：Mogador > 皇家财富号：RoyalFortune > 达芬奇：DaVinci > 大凤：Taihou > 长门：Nagato > 埃吉尔：Agir > 华甲：HwahJah > 百眼巨人：Argus > 火力：Ognevoy\n仅识别默认排序前两排；指定舰娘不可用时回退 WorkerJuu。"
-    },
-    "MinCoal": {
-      "name": "煤炭最低库存",
-      "help": "仓库中煤炭数量低于此值时，矿山岗位才会生产（每次生产 8 个）"
     },
     "MinCopper": {
       "name": "铜矿最低库存",

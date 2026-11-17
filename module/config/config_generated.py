@@ -973,9 +973,8 @@ class GeneratedConfig:
     # 配置组 `IslandMine`
     IslandMine_Positions = 1  # 1, 2, 3, 4
     IslandMine_MineSilver = 1  # 0, 1, 2, 3, 4
-    IslandMine_DefaultOre = 'Silver'  # Copper, Aluminium, Iron, Sulphur, Silver, Coal
+    IslandMine_DefaultOre = 'Silver'  # Copper, Aluminium, Iron, Sulphur, Silver
     IslandMine_WorkerFilter = 'WorkerJuu'
-    IslandMine_MinCoal = 0
     IslandMine_MinCopper = 50
     IslandMine_MinAluminium = 50
     IslandMine_MinIron = 50
