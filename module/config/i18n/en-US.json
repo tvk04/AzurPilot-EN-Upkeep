@@ -5994,7 +5994,7 @@
     },
     "Products": {
       "name": "Production order",
-      "help": "Products to make, in order, separated by \">\" (e.g. \"paper > notebook\"); the next one is tried when materials run short. Empty: the built-in rule. The Island Production Planner writes it. Products: file_cabinet, paper, notebook, chair_desk, choice_wooden_barrel"
+      "help": "Products to make, in order, separated by \">\" (e.g. \"paper > notebook\"); the next one is tried when materials run short. Empty: the built-in rule. The Island Production Planner writes it. Products: file_cabinet, paper, notebook, chair_desk"
     }
   },
   "ElectronicProcessing": {
@@ -6011,7 +6011,7 @@
     },
     "Products": {
       "name": "Production order",
-      "help": "Products to make, in order, separated by \">\" (e.g. \"paper > notebook\"); the next one is tried when materials run short. Empty: the built-in rule. The Island Production Planner writes it. Products: filter_element, ink_cartridge, clock"
+      "help": "Products to make, in order, separated by \">\" (e.g. \"paper > notebook\"); the next one is tried when materials run short. Empty: the built-in rule. The Island Production Planner writes it. Products: filter_element, ink_cartridge"
     }
   },
   "Industrial": {
@@ -6028,7 +6028,7 @@
     },
     "Products": {
       "name": "Production order",
-      "help": "Products to make, in order, separated by \">\" (e.g. \"paper > notebook\"); the next one is tried when materials run short. Empty: the built-in rule. The Island Production Planner writes it. Products: iron_nail, cutlery, charcoal_brush, cable, chemicals"
+      "help": "Products to make, in order, separated by \">\" (e.g. \"paper > notebook\"); the next one is tried when materials run short. Empty: the built-in rule. The Island Production Planner writes it. Products: iron_nail, cutlery, charcoal_brush, cable"
     }
   },
   "Handmade": {
@@ -6045,7 +6045,7 @@
     },
     "Products": {
       "name": "Production order",
-      "help": "Products to make, in order, separated by \">\" (e.g. \"paper > notebook\"); the next one is tried when materials run short. Empty: the built-in rule. The Island Production Planner writes it. Products: leather, boot, peanut_oil, cloth, rope, shepherd_purse, summer_bouquet, plum_blossom_sachet, winter_bouquet, gloves, aroma_sachet"
+      "help": "Products to make, in order, separated by \">\" (e.g. \"paper > notebook\"); the next one is tried when materials run short. Empty: the built-in rule. The Island Production Planner writes it. Products: leather, boot, peanut_oil, cloth, rope, shepherd_purse, summer_bouquet, plum_blossom_sachet, winter_bouquet"
     }
   },
   "IslandAirDrop": {
