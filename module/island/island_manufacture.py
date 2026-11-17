@@ -121,6 +121,7 @@ class IslandManufacture(IslandShopBase):
                     _product('paper', SELECT_PAPER, SELECT_PAPER_CHECK),
                     _product('notebook', SELECT_NOTEBOOK, SELECT_NOTEBOOK_CHECK),
                     _product('chair_desk', SELECT_CHAIR_DESK, SELECT_CHAIR_DESK_CHECK),
+                    _product('choice_wooden_barrel', SELECT_CHOICE_WOODEN_BARREL, SELECT_CHOICE_WOODEN_BARREL_CHECK),
                 ]
             },
             #TEMPLATE_FILTER_ELEMENT 未添加
@@ -130,6 +131,7 @@ class IslandManufacture(IslandShopBase):
                      'var_name': 'filter_element', 'selection': SELECT_FILTER_ELEMENT,
                      'selection_check': SELECT_FILTER_ELEMENT_CHECK, 'post_action': POST_FILTER_ELEMENT},
                     _product('ink_cartridge', SELECT_INK_CARTRIDGE, SELECT_INK_CARTRIDGE_CHECK),
+                    _product('clock', SELECT_CLOCK, SELECT_CLOCK_CHECK),
                 ]
             },
             'industrial_production': {
@@ -142,6 +144,7 @@ class IslandManufacture(IslandShopBase):
                      'selection_check': SELECT_CUTLERY_CHECK, 'post_action': POST_CUTLERY},
                     _product('charcoal_brush', SELECT_CHARCOAL_BRUSH, SELECT_CHARCOAL_BRUSH_CHECK),
                     _product('cable', SELECT_CABLE, SELECT_CABLE_CHECK),
+                    _product('chemicals', SELECT_CHEMICALS, SELECT_CHEMICALS_CHECK),
                 ]
             },
             'handmade': {
@@ -157,6 +160,8 @@ class IslandManufacture(IslandShopBase):
                      'selection_check': SELECT_PEANUT_OIL_CHECK, 'post_action': POST_PEANUT_OIL},
                     _product('cloth', SELECT_CLOTH, SELECT_CLOTH_CHECK),
                     _product('rope', SELECT_ROPE, SELECT_ROPE_CHECK),
+                    _product('gloves', SELECT_GLOVES, SELECT_GLOVES_CHECK),
+                    _product('aroma_sachet', SELECT_AROMA_SACHET, SELECT_AROMA_SACHET_CHECK),
                 ]
             }
         }

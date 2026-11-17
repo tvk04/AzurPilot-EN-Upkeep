@@ -168,21 +168,22 @@ RANCH_SWITCHES = {
 MANUFACTURE_PRODUCTS = {
     'manufacturing_lumber': {
         'line': 'IslandManufacture.WoodProcessing',
-        'products': {'file_cabinet': 3052, 'paper': 3048, 'notebook': 3049, 'chair_desk': 3050},
+        'products': {'file_cabinet': 3052, 'paper': 3048, 'notebook': 3049, 'chair_desk': 3050,
+                     'choice_wooden_barrel': 3051},
     },
     'manufacturing_electronic': {
         'line': 'IslandManufacture.ElectronicProcessing',
-        'products': {'filter_element': 3056, 'ink_cartridge': 3053},
+        'products': {'filter_element': 3056, 'ink_cartridge': 3053, 'clock': 3054},
     },
     'manufacturing_machinery': {
         'line': 'IslandManufacture.Industrial',
-        'products': {'iron_nail': 3044, 'cutlery': 3047, 'charcoal_brush': 3042, 'cable': 3043},
+        'products': {'iron_nail': 3044, 'cutlery': 3047, 'charcoal_brush': 3042, 'cable': 3043, 'chemicals': 3045},
     },
     'manufacturing_crafts': {
         'line': 'IslandManufacture.Handmade',
         'products': {'leather': 3036, 'boot': 3040, 'peanut_oil': 4012, 'cloth': 3035, 'rope': 3037,
                      'shepherd_purse': 4027, 'summer_bouquet': 4042,
-                     'plum_blossom_sachet': 4055, 'winter_bouquet': 4056},
+                     'plum_blossom_sachet': 4055, 'winter_bouquet': 4056, 'gloves': 3038, 'aroma_sachet': 3039},
     },
 }
 MANUFACTURE_LINES = {
