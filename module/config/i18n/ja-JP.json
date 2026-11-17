@@ -5978,7 +5978,7 @@
     },
     "Products": {
       "name": "生産順序",
-      "help": "生産する品目を順番に「>」で区切って指定します（例「paper > notebook」）。材料が足りないときは次の品目を試します。空欄は既定のルール。島生産プランナーが書き込みます。品目：file_cabinet, paper, notebook, chair_desk"
+      "help": "生産する品目を順番に「>」で区切って指定します（例「paper > notebook」）。材料が足りないときは次の品目を試します。空欄は既定のルール。島生産プランナーが書き込みます。品目：file_cabinet, paper, notebook, chair_desk, choice_wooden_barrel"
     }
   },
   "ElectronicProcessing": {
@@ -5995,7 +5995,7 @@
     },
     "Products": {
       "name": "生産順序",
-      "help": "生産する品目を順番に「>」で区切って指定します（例「paper > notebook」）。材料が足りないときは次の品目を試します。空欄は既定のルール。島生産プランナーが書き込みます。品目：filter_element, ink_cartridge"
+      "help": "生産する品目を順番に「>」で区切って指定します（例「paper > notebook」）。材料が足りないときは次の品目を試します。空欄は既定のルール。島生産プランナーが書き込みます。品目：filter_element, ink_cartridge, clock"
     }
   },
   "Industrial": {
@@ -6012,7 +6012,7 @@
     },
     "Products": {
       "name": "生産順序",
-      "help": "生産する品目を順番に「>」で区切って指定します（例「paper > notebook」）。材料が足りないときは次の品目を試します。空欄は既定のルール。島生産プランナーが書き込みます。品目：iron_nail, cutlery, charcoal_brush, cable"
+      "help": "生産する品目を順番に「>」で区切って指定します（例「paper > notebook」）。材料が足りないときは次の品目を試します。空欄は既定のルール。島生産プランナーが書き込みます。品目：iron_nail, cutlery, charcoal_brush, cable, chemicals"
     }
   },
   "Handmade": {
@@ -6029,7 +6029,7 @@
     },
     "Products": {
       "name": "生産順序",
-      "help": "生産する品目を順番に「>」で区切って指定します（例「paper > notebook」）。材料が足りないときは次の品目を試します。空欄は既定のルール。島生産プランナーが書き込みます。品目：leather, boot, peanut_oil, cloth, rope, shepherd_purse, summer_bouquet, plum_blossom_sachet, winter_bouquet"
+      "help": "生産する品目を順番に「>」で区切って指定します（例「paper > notebook」）。材料が足りないときは次の品目を試します。空欄は既定のルール。島生産プランナーが書き込みます。品目：leather, boot, peanut_oil, cloth, rope, shepherd_purse, summer_bouquet, plum_blossom_sachet, winter_bouquet, gloves, aroma_sachet"
     }
   },
   "IslandAirDrop": {

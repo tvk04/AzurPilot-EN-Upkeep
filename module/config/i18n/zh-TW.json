@@ -5978,7 +5978,7 @@
     },
     "Products": {
       "name": "生產順序",
-      "help": "按順序生產的產品，用「>」分隔（如「paper > notebook」），材料不足時嘗試下一個。留空使用內建規則。島嶼生產規劃器會寫入。可選產品：file_cabinet, paper, notebook, chair_desk"
+      "help": "按順序生產的產品，用「>」分隔（如「paper > notebook」），材料不足時嘗試下一個。留空使用內建規則。島嶼生產規劃器會寫入。可選產品：file_cabinet, paper, notebook, chair_desk, choice_wooden_barrel"
     }
   },
   "ElectronicProcessing": {
@@ -5995,7 +5995,7 @@
     },
     "Products": {
       "name": "生產順序",
-      "help": "按順序生產的產品，用「>」分隔（如「paper > notebook」），材料不足時嘗試下一個。留空使用內建規則。島嶼生產規劃器會寫入。可選產品：filter_element, ink_cartridge"
+      "help": "按順序生產的產品，用「>」分隔（如「paper > notebook」），材料不足時嘗試下一個。留空使用內建規則。島嶼生產規劃器會寫入。可選產品：filter_element, ink_cartridge, clock"
     }
   },
   "Industrial": {
@@ -6012,7 +6012,7 @@
     },
     "Products": {
       "name": "生產順序",
-      "help": "按順序生產的產品，用「>」分隔（如「paper > notebook」），材料不足時嘗試下一個。留空使用內建規則。島嶼生產規劃器會寫入。可選產品：iron_nail, cutlery, charcoal_brush, cable"
+      "help": "按順序生產的產品，用「>」分隔（如「paper > notebook」），材料不足時嘗試下一個。留空使用內建規則。島嶼生產規劃器會寫入。可選產品：iron_nail, cutlery, charcoal_brush, cable, chemicals"
     }
   },
   "Handmade": {
@@ -6029,7 +6029,7 @@
     },
     "Products": {
       "name": "生產順序",
-      "help": "按順序生產的產品，用「>」分隔（如「paper > notebook」），材料不足時嘗試下一個。留空使用內建規則。島嶼生產規劃器會寫入。可選產品：leather, boot, peanut_oil, cloth, rope, shepherd_purse, summer_bouquet, plum_blossom_sachet, winter_bouquet"
+      "help": "按順序生產的產品，用「>」分隔（如「paper > notebook」），材料不足時嘗試下一個。留空使用內建規則。島嶼生產規劃器會寫入。可選產品：leather, boot, peanut_oil, cloth, rope, shepherd_purse, summer_bouquet, plum_blossom_sachet, winter_bouquet, gloves, aroma_sachet"
     }
   },
   "IslandAirDrop": {
