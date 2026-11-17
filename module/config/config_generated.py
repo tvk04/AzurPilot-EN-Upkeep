@@ -319,6 +319,7 @@ class GeneratedConfig:
     Campaign_UseClearMode = True
     Campaign_UseFleetLock = True
     Campaign_UseAutoSearch = True
+    Campaign_MultipleSortiesCount = 0
     Campaign_ContinueAfterRestart = False
     Campaign_Use2xBook = False
     Campaign_AmbushEvade = True
@@ -327,6 +328,9 @@ class GeneratedConfig:
 
     # 配置组 `OperationHandover`
     OperationHandover_Count = 1
+    OperationHandover_DailyRunCount = 1
+    OperationHandover_DailyRunCountUsed = 0
+    OperationHandover_DailyRunCountRecord = datetime.datetime(2020, 1, 1, 0, 0)
     OperationHandover_AutoSupplementTime = False
     OperationHandover_UseHandoverBook = False
     OperationHandover_ConsumeAllBook = False  # True, False
@@ -969,8 +973,9 @@ class GeneratedConfig:
     # 配置组 `IslandMine`
     IslandMine_Positions = 1  # 1, 2, 3, 4
     IslandMine_MineSilver = 1  # 0, 1, 2, 3, 4
-    IslandMine_DefaultOre = 'Silver'  # Copper, Aluminium, Iron, Sulphur, Silver
+    IslandMine_DefaultOre = 'Silver'  # Copper, Aluminium, Iron, Sulphur, Silver, Coal
     IslandMine_WorkerFilter = 'WorkerJuu'
+    IslandMine_MinCoal = 0
     IslandMine_MinCopper = 50
     IslandMine_MinAluminium = 50
     IslandMine_MinIron = 50
